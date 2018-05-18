@@ -27,8 +27,52 @@
 # Para a correta execução do programa, a estrutura atual deve ser mantida,
 # substituindo apenas o comando print(questão...) existente.
 ##
+
+MAX_PASSWORD_LEN = 12
+MIN_PASSWORD_LEN = 6
+SPECIAL_CARACTERES = ['$', '#', '@']
+
+def _validate_max_len(password):
+    if(len(password) > MAX_PASSWORD_LEN):
+        return False
+    return True
+
+def _validate_min_len(password):
+    if(len(password) < MIN_PASSWORD_LEN):
+        return False
+    return True
+
+def _validate_special_caracteres(password):
+    for caracter in password:
+        if(caracter in SPECIAL_CARACTERES):
+            return True
+    return False
+
+def _validate_upper_caracteres(password):
+    for caracter in password:
+        if(caracter.isupper()):
+            return True
+    return False
+
+def _validate_lower_caracteres(password):
+    for caracter in password:
+        if(caracter.islower()):
+            return True
+    return False
+
+def _validate_numeric_caracteres(password):
+    for caracter in password:
+        if(caracter.isnumeric()):
+            return True
+    return False
+
 def main():
-    print("questao 1")
+    valid_passwords = [] 
+    passwords = input().split(",")
+    for password in passwords:
+        if(_validate_max_len(password) and _validate_min_len(password) and _validate_special_caracteres(password) and _validate_upper_caracteres(password) and _validate_lower_caracteres(password) and _validate_numeric_caracteres(password)):
+            valid_passwords.append(password)
+    print(','.join(valid_passwords))
     
 
 
