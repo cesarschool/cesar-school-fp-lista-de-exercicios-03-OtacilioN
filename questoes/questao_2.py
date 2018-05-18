@@ -26,10 +26,16 @@
 # Para a correta execução do programa, a estrutura atual deve ser mantida,
 # substituindo apenas o comando print(questão...) existente.
 ##
+def print_word_count(word, user_input):
+    print(word+':'+str(user_input.count(word)))
+
 def main():
-    print("questao 2")
-
-
-
+    user_input = input().split()
+    user_input.sort()
+    print_word_count(user_input[0], user_input)
+    for word in range(1, len(user_input)):
+        if(user_input[word] != user_input[word-1]):
+            print_word_count(user_input[word], user_input)
+        
 if __name__ == '__main__':
     main()
