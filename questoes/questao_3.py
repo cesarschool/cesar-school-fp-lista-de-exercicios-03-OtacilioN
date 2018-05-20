@@ -50,6 +50,8 @@ VALUE_INDEX = 1
 
 def _move_robot(instruction, universe):
     # X_AXIS
+    if(len(instruction) != 2):
+        return universe
     if(instruction[AXIS_INDEX] == 'ESQUERDA'):
         universe[X_AXIS] = universe[X_AXIS] + int(instruction[VALUE_INDEX]) * ESQUERDA
     elif(instruction[AXIS_INDEX] == 'DIREITA'):
