@@ -37,10 +37,41 @@
 # Para a correta execução do programa, a estrutura atual deve ser mantida,
 # substituindo apenas o comando print(questão...) existente.
 ##
+
+CIMA = 1
+DIREITA = 1
+BAIXO = -1
+ESQUERDA = -1
+X_AXIS = 0
+Y_AXIS = 1
+AXIS_INDEX = 0
+VALUE_INDEX = 1
+
+
+def _move_robot(instruction, universe):
+    # X_AXIS
+    if(instruction[AXIS_INDEX] == 'ESQUERDA'):
+        universe[X_AXIS] = universe[X_AXIS] + int(instruction[VALUE_INDEX]) * ESQUERDA
+    elif(instruction[AXIS_INDEX] == 'DIREITA'):
+        universe[X_AXIS] = universe[X_AXIS] + int(instruction[VALUE_INDEX]) * DIREITA
+
+    # Y_AXIS
+    elif(instruction[AXIS_INDEX] == 'CIMA'):
+        universe[Y_AXIS] = universe[Y_AXIS] + (int(instruction[VALUE_INDEX]) * CIMA)
+    elif(instruction[AXIS_INDEX] == 'BAIXO'):
+        universe[Y_AXIS] = universe[Y_AXIS] + int(instruction[VALUE_INDEX])  * BAIXO
+    return universe
+
+def _apply_pitagoras(universe):
+    return (universe[X_AXIS]**2+universe[Y_AXIS]**2)**0.5
+
 def main():
-    print("questao 3")
-
-
+    universe = [0, 0]
+    user_input = input().split()
+    while(user_input):
+        universe = _move_robot(user_input, universe)
+        user_input = input().split()
+    print(round(_apply_pitagoras(universe)))
     
 if __name__ == '__main__':
     main()
